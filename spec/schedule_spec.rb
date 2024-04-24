@@ -264,6 +264,20 @@ RSpec.describe ElasticWhenever::Schedule do
         expect(schedule.tasks.first).to have_attributes(expression: "cron(0 0 1 12 ? *)")
       end
     end
+
+    context "when use 1.year with `at` option" do
+      let(:file) do
+        <<~FILE
+          every :year, :at => "Apr 25th 00:40" do
+            rake "hoge:run"
+          end
+        FILE
+      end
+
+      it "has expression" do
+        expect(schedule.tasks.first).to have_attributes(expression: "cron(40 0 25 4 ? *)")
+      end
+    end
   end
 
   describe "#set" do
