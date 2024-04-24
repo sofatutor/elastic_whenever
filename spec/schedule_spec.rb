@@ -265,7 +265,7 @@ RSpec.describe ElasticWhenever::Schedule do
       end
     end
 
-    context "when use 1.year with `at` option" do
+    context "when use :year with `at` option" do
       let(:file) do
         <<~FILE
           every :year, :at => "Apr 25th 00:40" do
